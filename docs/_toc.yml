@@ -4,4 +4,4 @@
 format: jb-book
 root: intro
 chapters:
-- file: compare_swap_times
+- file: scipy_vs_numpy_edge_swaps
