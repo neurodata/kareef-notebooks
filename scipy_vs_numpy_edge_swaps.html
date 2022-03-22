@@ -233,29 +233,14 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">lil_matrix</span>
-<span class="kn">from</span> <span class="nn">graspologic.models</span> <span class="kn">import</span> <span class="n">_do_some_edge_swaps</span>
+<span class="kn">from</span> <span class="nn">graspologic.models</span> <span class="kn">import</span> <span class="n">EdgeSwap</span>
 <span class="kn">from</span> <span class="nn">graspologic.simulations</span> <span class="kn">import</span> <span class="n">er_np</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span><span class="o">==</span><span class="mf">1.20</span>
-</pre></div>
-</div>
-</div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting numpy==1.20
-  Downloading numpy-1.20.0-cp37-cp37m-macosx_10_9_x86_64.whl (16.0 MB)
-     |████████████████████████████████| 16.0 MB 7.0 MB/s eta 0:00:01    |█████████████▊                  | 6.9 MB 7.0 MB/s eta 0:00:02
-?25hInstalling collected packages: numpy
-  Attempting uninstall: numpy
-    Found existing installation: numpy 1.18.1
-    Uninstalling numpy-1.18.1:
-      Successfully uninstalled numpy-1.18.1
-Successfully installed numpy-1.20.0
-Note: you may need to restart the kernel to use updated packages.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/kullah/lib/python3.7/site-packages/gensim/similarities/__init__.py:15: UserWarning: The gensim.similarities.levenshtein submodule is disabled, because the optional Levenshtein package &lt;https://pypi.org/project/python-Levenshtein/&gt; is unavailable. Install Levenhstein (e.g. `pip install python-Levenshtein`) to suppress this warning.
+  warnings.warn(msg)
 </pre></div>
 </div>
 </div>
@@ -287,14 +272,16 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
-<span class="n">_do_some_edge_swaps</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">Swapper</span> <span class="o">=</span> <span class="n">EdgeSwap</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="c1">#1000 swaps</span>
+<span class="n">Swapper</span><span class="o">.</span><span class="n">_do_some_edge_swaps</span><span class="p">()</span>
 <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6236121600000004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1165343730000075
 </pre></div>
 </div>
 </div>
@@ -302,14 +289,50 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
-<span class="n">_do_some_edge_swaps</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">Swapper</span> <span class="o">=</span> <span class="n">EdgeSwap</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">Swapper</span><span class="o">.</span><span class="n">_do_some_edge_swaps</span><span class="p">()</span>
 <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span><span class="o">-</span><span class="n">start_time</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.17495811199999878
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kareefullah/Desktop/Graspy_Workspace/graspologic/graspologic/models/edge_swaps.py:19: NumbaWarning: <span class=" -Color -Color-Bold"></span>
+<span class=" -Color -Color-Bold">Compilation is falling back to object mode WITH looplifting enabled because Function &quot;_edge_swap&quot; failed type inference due to: non-precise type pyobject</span>
+<span class=" -Color -Color-Bold">During: typing of argument at /Users/kareefullah/Desktop/Graspy_Workspace/graspologic/graspologic/models/edge_swaps.py (23)</span>
+
+<span class=" -Color -Color-Bold">File &quot;../../../Graspy_Workspace/graspologic/graspologic/models/edge_swaps.py&quot;, line 23:</span>
+<span class=" -Color -Color-Bold">    def _edge_swap(adjacency, edge_list):</span>
+<span class=" -Color -Color-Bold">        &lt;source elided&gt;</span>
+<span class=" -Color -Color-Bold">        # checks if there are at 2 edges in the graph</span>
+<span class=" -Color -Color-Bold">        if len(edge_list) &lt; 2:</span>
+        <span class=" -Color -Color-Bold">^</span>
+
+  @staticmethod
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6492382360000022
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/kullah/lib/python3.7/site-packages/numba/core/object_mode_passes.py:152: NumbaWarning: <span class=" -Color -Color-Bold">Function &quot;_edge_swap&quot; was compiled in object mode without forceobj=True.</span>
+
+<span class=" -Color -Color-Bold">File &quot;../../../Graspy_Workspace/graspologic/graspologic/models/edge_swaps.py&quot;, line 21:</span>
+<span class=" -Color -Color-Bold">    @nb.jit</span>
+<span class=" -Color -Color-Bold">    def _edge_swap(adjacency, edge_list):</span>
+    <span class=" -Color -Color-Bold">^</span>
+
+  state.func_ir.loc))
+/opt/miniconda3/envs/kullah/lib/python3.7/site-packages/numba/core/object_mode_passes.py:162: NumbaDeprecationWarning: <span class=" -Color -Color-Bold"></span>
+<span class=" -Color -Color-Bold">Fall-back from the nopython compilation path to the object mode compilation path has been detected, this is deprecated behaviour.</span>
+
+<span class=" -Color -Color-Bold">For more information visit https://numba.pydata.org/numba-doc/latest/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit</span>
+
+<span class=" -Color -Color-Bold">File &quot;../../../Graspy_Workspace/graspologic/graspologic/models/edge_swaps.py&quot;, line 21:</span>
+<span class=" -Color -Color-Bold">    @nb.jit</span>
+<span class=" -Color -Color-Bold">    def _edge_swap(adjacency, edge_list):</span>
+    <span class=" -Color -Color-Bold">^</span>
+
+  state.func_ir.loc))
 </pre></div>
 </div>
 </div>
