@@ -247,7 +247,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="n">visited_graphs</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">binarize</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="n">swapper</span> <span class="o">=</span> <span class="n">EdgeSwap</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">):</span>
     <span class="n">A</span><span class="p">,</span> <span class="n">edge_list</span> <span class="o">=</span> <span class="n">swapper</span><span class="o">.</span><span class="n">swap_edges</span><span class="p">()</span>
@@ -268,7 +267,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 110 artists&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 7 artists&gt;
 </pre></div>
 </div>
 <img alt="_images/uniform-dist-test_3_1.png" src="_images/uniform-dist-test_3_1.png" />
