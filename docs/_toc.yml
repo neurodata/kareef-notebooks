@@ -5,3 +5,4 @@ format: jb-book
 root: intro
 chapters:
 - file: scipy_vs_numpy_edge_swaps
+- file: uniform-dist-test
